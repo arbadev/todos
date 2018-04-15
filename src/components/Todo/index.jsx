@@ -23,6 +23,12 @@ class Todo extends PureComponent {
           >
             <Icon name="remove" />
           </Button>
+          <Button
+            icon
+            floated="right"
+          >
+            <Icon name="pencil" />
+          </Button>
           <Card.Header>
             Steve Sanders Steve Sanders Steve Sanders
           </Card.Header>
