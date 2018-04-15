@@ -1,22 +1,35 @@
-/*
-0 - 600px: Phone
-600 - 900px:  Tablet Portrait
-900 - 1200px: Tablet Landscape
-[1200 - 1800px]:  Is where our styles apply
-1800px +:  Big Desktop
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  80% {
+    opacity: .8;
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
 
-Breakpoints arguments choices:
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    opacity: .8;
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
 
-- phone
-- tab-port
-- tab-land
-- big-desktop
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(10rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
 
-1em = 16px
-*/
 .grid {
   padding: 1rem;
-  background: #282c37;
   font-size: 1.5rem; }
 
 .modal {
@@ -25,3 +38,18 @@ Breakpoints arguments choices:
     font-size: 2.5rem !important; }
   .modal__form {
     font-size: 1.5rem !important; }
+
+.heading {
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  margin: 2rem;
+  font-size: 3.5rem;
+  -webkit-background-clip: text;
+  color: #282c37;
+  letter-spacing: .2rem;
+  transition: all .2s;
+  animation: moveInLeft 3s ease-out; }
+  .heading:hover {
+    transform: translateY(-0.2rem) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2); }

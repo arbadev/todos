@@ -36,6 +36,7 @@ html {
 
 .app {
   padding: 1rem;
+  height: 98vh;
   border-radius: 3px;
-  overflow: hidden;
+  overflow-y: scroll;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15); }

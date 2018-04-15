@@ -4,7 +4,56 @@
 import { ADD_TODO, REMOVE_TODO } from '../actions/todo'
 
 const initialState = {
-  items: [],
+  todos: [
+    {
+      title: 'Steve Sanders Steve Sanders Steve Sanders',
+      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
+    },
+    {
+      title: 'Steve Sanders Steve Sanders Steve Sanders',
+      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
+    },
+    {
+      title: 'Steve Sanders Steve Sanders Steve Sanders',
+      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
+    },
+    {
+      title: 'Steve Sanders Steve Sanders Steve Sanders',
+      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
+    },
+    {
+      title: 'Steve Sanders Steve Sanders Steve Sanders',
+      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
+    },
+    {
+      title: 'Steve Sanders Steve Sanders Steve Sanders',
+      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
+    },
+    {
+      title: 'Steve Sanders Steve Sanders Steve Sanders',
+      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
+    },
+    {
+      title: 'Steve Sanders Steve Sanders Steve Sanders',
+      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
+    },
+    {
+      title: 'Steve Sanders Steve Sanders Steve Sanders',
+      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
+    },
+    {
+      title: 'Steve Sanders Steve Sanders Steve Sanders',
+      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
+    },
+    {
+      title: 'Steve Sanders Steve Sanders Steve Sanders',
+      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
+    },
+    {
+      title: 'Steve Sanders Steve Sanders Steve Sanders',
+      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
+    },
+  ],
 }
 
 export default (state = initialState, action) => {
