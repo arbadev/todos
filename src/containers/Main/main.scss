@@ -1,9 +1,10 @@
 @import '../../styles/variables';
-@import '../../styles/mixins';
+@import '../../styles/animations';
+
 
 .grid {
   padding: 1rem;
-  background: $color-primary-dark;
+  // background: $color-primary-dark;
   font-size: 1.5rem;
 }
 
@@ -16,5 +17,24 @@
 
   &__form{
     font-size: 1.5rem !important;
+  }
+}
+
+.heading {
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  margin: 2rem;
+  font-size: 3.5rem;
+
+  -webkit-background-clip: text;
+  color: $color-primary-dark;
+  letter-spacing: .2rem;
+  transition: all .2s;
+  animation: moveInLeft 3s ease-out;
+
+  &:hover {
+    transform: translateY(-.2rem) scale(1.1);
+    text-shadow: .5rem 1rem 2rem rgba($color-black, .2);
   }
 }
