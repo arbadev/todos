@@ -1,68 +1,28 @@
-// import update from 'immutability-helper'
+import update from 'immutability-helper'
 // import { REHYDRATE } from 'redux-persist/constants'
 
 import { ADD_TODO, REMOVE_TODO } from '../actions/todo'
 
 const initialState = {
   todos: [
-    {
-      title: 'Steve Sanders Steve Sanders Steve Sanders',
-      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
-    },
-    {
-      title: 'Steve Sanders Steve Sanders Steve Sanders',
-      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
-    },
-    {
-      title: 'Steve Sanders Steve Sanders Steve Sanders',
-      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
-    },
-    {
-      title: 'Steve Sanders Steve Sanders Steve Sanders',
-      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
-    },
-    {
-      title: 'Steve Sanders Steve Sanders Steve Sanders',
-      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
-    },
-    {
-      title: 'Steve Sanders Steve Sanders Steve Sanders',
-      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
-    },
-    {
-      title: 'Steve Sanders Steve Sanders Steve Sanders',
-      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
-    },
-    {
-      title: 'Steve Sanders Steve Sanders Steve Sanders',
-      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
-    },
-    {
-      title: 'Steve Sanders Steve Sanders Steve Sanders',
-      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
-    },
-    {
-      title: 'Steve Sanders Steve Sanders Steve Sanders',
-      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
-    },
-    {
-      title: 'Steve Sanders Steve Sanders Steve Sanders',
-      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
-    },
-    {
-      title: 'Steve Sanders Steve Sanders Steve Sanders',
-      task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra eget diam ut bibendum. Maecenas sed laoreet metus, a posuere.',
-    },
   ],
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO: {
-      return 0
+      const { todo } = action
+      return update(state, {
+        todos: { $push: [todo] },
+      })
     }
     case REMOVE_TODO: {
-      return 0
+      const { todo } = action
+      const { todos } = state
+      const index = todos.findIndex(t => t.id === todo.id)
+      return update(state, {
+        todos: { $splice: [[index, 1]] },
+      })
     }
     default:
       return state

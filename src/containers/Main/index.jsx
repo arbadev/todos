@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import UUID from 'uuid-js'
 import { Grid } from 'react-flexbox-grid'
 import { Card, Button, Modal, Statistic, Form } from 'semantic-ui-react'
 
@@ -24,12 +25,13 @@ import Todo from '../../components/Todo'
 /*
  * Actions
 */
-import { addTodo } from '../../actions/todo'
+import { addTodo, removeTodo } from '../../actions/todo'
 
 
 const propTypes = {
   todos: PropTypes.array,
   addTodo: PropTypes.func,
+  removeTodo: PropTypes.func,
 }
 
 
@@ -48,6 +50,8 @@ class Main extends Component {
     this.handleOpen = this.handleOpen.bind(this)
     this.renderTodos = this.renderTodos.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleAdd = this.handleAdd.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   // toggleModal() {
@@ -74,14 +78,26 @@ class Main extends Component {
     return this.setState({ todo })
   }
 
+  handleAdd() {
+    const { todo } = this.state
+    const id = UUID.create()
+    todo.id = id.toString()
+    this.setState({ openModal: false })
+    return this.props.addTodo(todo)
+  }
+
+  handleDelete(todo) {
+    return this.props.removeTodo(todo)
+  }
+
   renderTodos(todos) {
     if (todos.length > 0) {
-      return todos.map((todo, index) => {
+      return todos.map((todo) => {
         return (
           <Todo
-            key={index}
+            key={todo.id}
             todo={todo}
-            // proceedCheckout={this.handleCheckout}
+            onDelete={this.handleDelete}
           />
         )
       })
@@ -144,7 +160,15 @@ class Main extends Component {
             <Button color="black" size="huge" onClick={this.handleClose}>
               Discard
             </Button>
-            <Button positive size="huge" icon="checkmark" labelPosition="right" content="Add" onClick={this.handleClose} />
+            <Button
+              positive
+              size="huge"
+              icon="checkmark"
+              labelPosition="right"
+              content="OK"
+              onClick={this.handleAdd}
+              disabled={!todo.title.length > 0 || !todo.task.length > 0}
+            />
           </Modal.Actions>
         </Modal>
       </Grid>
@@ -161,6 +185,7 @@ const mapStateToProps = (state) => {
 const matchDispatchToProps = (dispatch) => {
   return bindActionCreators({
     addTodo,
+    removeTodo,
   }, dispatch)
 }
 

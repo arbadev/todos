@@ -1,10 +1,11 @@
 import React, { PureComponent, PropTypes } from 'react'
-import { Card, Button, Icon, Image } from 'semantic-ui-react'
+import { Card, Button, Icon } from 'semantic-ui-react'
 
 import styles from './todo.css'
 
 const propTypes = {
   todo: PropTypes.object,
+  onDelete: PropTypes.func,
 }
 
 class Todo extends PureComponent {
@@ -12,6 +13,11 @@ class Todo extends PureComponent {
     super(props)
     this.state = {
     }
+    this.handleDelete = this.handleDelete.bind(this)
+  }
+  handleDelete() {
+    const { todo, onDelete } = this.props
+    return onDelete(todo)
   }
 
   render() {
@@ -23,6 +29,7 @@ class Todo extends PureComponent {
           <Button
             icon
             floated="right"
+            onClick={this.handleDelete}
           >
             <Icon name="remove" />
           </Button>
