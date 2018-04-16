@@ -6,6 +6,7 @@ import styles from './todo.css'
 const propTypes = {
   todo: PropTypes.object,
   onDelete: PropTypes.func,
+  onToggle: PropTypes.func,
 }
 
 class Todo extends PureComponent {
@@ -14,16 +15,26 @@ class Todo extends PureComponent {
     this.state = {
     }
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleToggle = this.handleToggle.bind(this)
   }
+
   handleDelete() {
     const { todo, onDelete } = this.props
     return onDelete(todo)
   }
 
+  handleToggle() {
+    const { todo, onToggle } = this.props
+    return onToggle(todo)
+  }
+
   render() {
     const { todo } = this.props
     return (
-      <Card>
+      <Card
+        color={todo.done ? 'green' : 'red'}
+        className={styles.todo}
+      >
 
         <Card.Content>
           <Button
@@ -49,7 +60,14 @@ class Todo extends PureComponent {
 
         <Card.Content extra>
           <div className="ui two buttons">
-            <Button basic color="green">Approve</Button>
+            <Button
+              basic
+              color="black"
+              onClick={this.handleToggle}
+              className={styles.btn}
+            >
+              {todo.done ? 'Mark as undone' : 'Mark as done'}
+            </Button>
           </div>
         </Card.Content>
 

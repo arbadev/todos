@@ -2,18 +2,12 @@
 @import '../../styles/mixins';
 
 
-.product {
+.todo {
   box-shadow: $regular-box-shadow;
   transition: transform .3s;
 
   &:hover {
     transform: translateY(-.5rem) scale(1.03);
-  }
-
-  &__label {
-    &:not(:last-child) {
-      margin-bottom: 1rem;
-    }
   }
 }
 

@@ -25,13 +25,14 @@ import Todo from '../../components/Todo'
 /*
  * Actions
 */
-import { addTodo, removeTodo } from '../../actions/todo'
+import { addTodo, removeTodo, toggleTodo } from '../../actions/todo'
 
 
 const propTypes = {
   todos: PropTypes.array,
   addTodo: PropTypes.func,
   removeTodo: PropTypes.func,
+  toggleTodo: PropTypes.func,
 }
 
 
@@ -40,6 +41,7 @@ class Main extends Component {
     super(props)
 
     this.state = {
+      todos: this.props.todos,
       openModal: false,
       todo: {
         title: '',
@@ -52,13 +54,13 @@ class Main extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleToggle = this.handleToggle.bind(this)
   }
 
-  // toggleModal() {
-  //   this.setState((prevState, props) => {
-  //     return { openModal: !prevState.openModal }
-  //   })
-  // }
+  componentWillReceiveProps(nextProps) {
+    const { todos } = nextProps
+    this.setState({ todos })
+  }
 
   handleOpen() {
     return this.setState({ openModal: true })
@@ -82,12 +84,23 @@ class Main extends Component {
     const { todo } = this.state
     const id = UUID.create()
     todo.id = id.toString()
-    this.setState({ openModal: false })
+    todo.done = false
+    this.setState({
+      openModal: false,
+      todo: {
+        title: '',
+        task: '',
+      },
+    })
     return this.props.addTodo(todo)
   }
 
   handleDelete(todo) {
     return this.props.removeTodo(todo)
+  }
+
+  handleToggle(todo) {
+    return this.props.toggleTodo(todo)
   }
 
   renderTodos(todos) {
@@ -98,6 +111,7 @@ class Main extends Component {
             key={todo.id}
             todo={todo}
             onDelete={this.handleDelete}
+            onToggle={this.handleToggle}
           />
         )
       })
@@ -107,8 +121,7 @@ class Main extends Component {
 
   render() {
     const { openModal, todo } = this.state
-    const { todos } = this.props
-    console.log('todo', todo)
+    const { todos } = this.state
     return (
       <Grid
         className={styles.grid}
@@ -186,6 +199,7 @@ const matchDispatchToProps = (dispatch) => {
   return bindActionCreators({
     addTodo,
     removeTodo,
+    toggleTodo,
   }, dispatch)
 }
 
