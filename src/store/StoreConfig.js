@@ -13,7 +13,7 @@ const autoRehydrateConfig = {
 
 const localStorageConfig = {
   // storage: localForage,
-  whitelist: ['todo'],
+  whitelist: [''],
 }
 
 export default function configureStore(initialState) {

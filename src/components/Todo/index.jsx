@@ -6,6 +6,7 @@ import styles from './todo.css'
 const propTypes = {
   todo: PropTypes.object,
   onDelete: PropTypes.func,
+  onEdit: PropTypes.func,
   onToggle: PropTypes.func,
 }
 
@@ -15,12 +16,18 @@ class Todo extends PureComponent {
     this.state = {
     }
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleEdit = this.handleEdit.bind(this)
     this.handleToggle = this.handleToggle.bind(this)
   }
 
   handleDelete() {
     const { todo, onDelete } = this.props
     return onDelete(todo)
+  }
+
+  handleEdit() {
+    const { todo, onEdit } = this.props
+    return onEdit(todo)
   }
 
   handleToggle() {
@@ -47,6 +54,7 @@ class Todo extends PureComponent {
           <Button
             icon
             floated="right"
+            onClick={this.handleEdit}
           >
             <Icon name="pencil" />
           </Button>
