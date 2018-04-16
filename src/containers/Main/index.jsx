@@ -54,6 +54,7 @@ class Main extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleEdit = this.handleEdit.bind(this)
     this.handleToggle = this.handleToggle.bind(this)
   }
 
@@ -83,8 +84,8 @@ class Main extends Component {
   handleAdd() {
     const { todo } = this.state
     const id = UUID.create()
-    todo.id = id.toString()
-    todo.done = false
+    todo.id = todo.id ? todo.id : id.toString()
+    todo.done = todo.done ? true : false
     this.setState({
       openModal: false,
       todo: {
@@ -99,6 +100,13 @@ class Main extends Component {
     return this.props.removeTodo(todo)
   }
 
+  handleEdit(todo) {
+    return this.setState({
+      todo,
+      openModal: true,
+    })
+  }
+
   handleToggle(todo) {
     return this.props.toggleTodo(todo)
   }
@@ -111,6 +119,7 @@ class Main extends Component {
             key={todo.id}
             todo={todo}
             onDelete={this.handleDelete}
+            onEdit={this.handleEdit}
             onToggle={this.handleToggle}
           />
         )

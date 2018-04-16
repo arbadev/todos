@@ -11,9 +11,26 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO: {
       const { todo } = action
-      return update(state, {
-        todos: { $push: [todo] },
-      })
+      const { todos } = state
+      const index = todos.findIndex(t => t.id === todo.id)
+      const opts = index > -1 ?
+        update(state, {
+          todos: {
+            [index]: {
+              $set: {
+                title: todo.title,
+                task: todo.task,
+                id: todo.id,
+                done: todo.done,
+              },
+            },
+          },
+        })
+        :
+        update(state, {
+          todos: { $push: [todo] },
+        })
+      return opts
     }
     case REMOVE_TODO: {
       const { todo } = action
